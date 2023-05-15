@@ -29,6 +29,18 @@
           </header>
           <section id="container">
             <p class="intro">User, your current status is...</p>
+            <div id="myDiv"></div>
+              <script>$(document).ready(function() {
+  var myDiv = $('#myDiv');
+
+  $.get('https://vflashapp.000webhostapp.com/vflash.php', function(data) {
+    myDiv.text(data); // Write the retrieved data to the div
+  })
+  .fail(function(error) {
+    console.log('An error occurred:', error);
+  });
+});
+            </script>
             <ul id="listlink">
               <li>
                 <div></div>
