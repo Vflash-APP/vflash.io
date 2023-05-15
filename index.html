@@ -31,18 +31,20 @@
             <p class="intro">User, your current status is...</p>
             <div id="myDiv"></div>
               <script>
-                $(document).ready(function() {
-                const myDiv = document.getElementById('myDiv');
+               document.addEventListener('DOMContentLoaded', function() {
+                  var myDiv = document.getElementById('myDiv');
 
-              fetch('https://vflashapp.000webhostapp.com/vflash.php')
-                .then(response => response.text())
-                .then(data => {
-                  myDiv.innerText = data; // Write the retrieved data to the div
-                })
-                .catch(error => {
-                  console.log('An error occurred:', error);
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('GET', 'https://vflashapp.000webhostapp.com/vflash.php', true);
+                  xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                      myDiv.innerText = xhr.responseText; // Write the retrieved data to the div
+                    } else if (xhr.readyState === 4) {
+                      console.log('An error occurred:', xhr.status);
+                    }
+                  };
+                  xhr.send();
                 });
-
             </script>
             <ul id="listlink">
               <li>
